@@ -15,10 +15,12 @@
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix --cache",
     "lint": "run-s lint:*",
-    "format": "prettier --write --experimental-cli src/"
+    "format": "prettier --write --experimental-cli src/",
+    "backend": "json-server --watch db/db.json"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
+    "json-server": "^1.0.0-beta.3",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
     "vue": "^3.5.25",
