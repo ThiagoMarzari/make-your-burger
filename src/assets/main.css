@@ -17,3 +17,15 @@ a,
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
 }
+
+input,
+select,
+button {
+  border: solid 1px;
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.5rem;
+}
+
+button {
+  cursor: pointer;
+}
