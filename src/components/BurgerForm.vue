@@ -1,46 +1,49 @@
 <template>
-  <div class="flex w-full items-center justify-center px-4">
-    <form class="flex w-full max-w-lg flex-col gap-6" @submit="createBurger">
-      <div class="flex flex-col gap-1">
-        <InputLabel text="Nome" />
-        <input type="text" name="name" v-model="nome" placeholder="Digite seu nome" />
-      </div>
-      <div class="flex flex-col gap-1">
-        <InputLabel text="Escolha o pão" />
-        <select class="w-full" name="pao" id="pao" v-model="pao">
-          <option value="">Selecione o seu pão</option>
-          <option v-for="pao in paes" :key="pao.id" :v-model="pao">{{ pao.tipo }}</option>
-        </select>
-      </div>
-      <div class="flex flex-col gap-1">
-        <InputLabel text="Escolha a carne" />
-        <select class="w-full" name="carne" id="carne" v-model="carne">
-          <option value="">Selecione o tipo de carne</option>
-          <option v-for="carne in carnes" :key="carne.id" :value="carne.tipo">
-            {{ carne.tipo }}
-          </option>
-        </select>
-      </div>
-      <div class="flex w-full flex-col justify-center gap-1">
-        <InputLabel text="Escolha os opcionais" />
-        <div
-          v-for="op in opcionaisData"
-          :key="op.id"
-          class="grid w-full grid-cols-2 items-center gap-4"
-        >
-          <span class="font-bold">{{ op.tipo }}</span>
-          <input type="checkbox" name="opcionais" v-model="opcionais" :value="op.tipo" />
+  <div>
+    <Message message="Teste 1 mensagem sistema" />
+    <div class="flex w-full items-center justify-center px-4">
+      <form class="flex w-full max-w-lg flex-col gap-6" @submit="createBurger">
+        <div class="flex flex-col gap-1">
+          <InputLabel text="Nome" />
+          <input type="text" name="name" v-model="nome" placeholder="Digite seu nome" />
         </div>
-      </div>
-      <div>
-        <button
-          class="w-full text-green-500 shadow shadow-green-400 transition-all hover:scale-105"
-          type="submit"
-        >
-          Criar meu burger
-        </button>
-      </div>
-    </form>
+        <div class="flex flex-col gap-1">
+          <InputLabel text="Escolha o pão" />
+          <select class="w-full" name="pao" id="pao" v-model="pao">
+            <option value="">Selecione o seu pão</option>
+            <option v-for="pao in paes" :key="pao.id" :v-model="pao">{{ pao.tipo }}</option>
+          </select>
+        </div>
+        <div class="flex flex-col gap-1">
+          <InputLabel text="Escolha a carne" />
+          <select class="w-full" name="carne" id="carne" v-model="carne">
+            <option value="">Selecione o tipo de carne</option>
+            <option v-for="carne in carnes" :key="carne.id" :value="carne.tipo">
+              {{ carne.tipo }}
+            </option>
+          </select>
+        </div>
+        <div class="flex w-full flex-col justify-center gap-1">
+          <InputLabel text="Escolha os opcionais" />
+          <div
+            v-for="op in opcionaisData"
+            :key="op.id"
+            class="grid w-full grid-cols-2 items-center gap-4"
+          >
+            <span class="font-bold">{{ op.tipo }}</span>
+            <input type="checkbox" name="opcionais" v-model="opcionais" :value="op.tipo" />
+          </div>
+        </div>
+        <div>
+          <button
+            class="w-full text-green-500 shadow shadow-green-400 transition-all hover:scale-105"
+            type="submit"
+          >
+            Criar meu burger
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -48,6 +51,7 @@
 import { onMounted, ref } from 'vue'
 import InputLabel from './InputLabel.vue'
 import { api } from '@/lib/axios'
+import Message from './Message.vue'
 
 interface IngredienteProps {
   id: number
@@ -86,7 +90,7 @@ const createBurger = async (e: SubmitEvent) => {
     status: 'Solicitado',
   }
 
-  const req = await api.post('/burgers', data)
+  //const req = await api.post('/burgers', data)
 
   clearInputs()
 }
