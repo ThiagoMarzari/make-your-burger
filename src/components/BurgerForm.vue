@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-full items-center justify-center px-4">
-    <form class="flex w-full max-w-lg flex-col gap-6">
+    <form class="flex w-full max-w-lg flex-col gap-6" @submit="createBurger">
       <div class="flex flex-col gap-1">
         <InputLabel text="Nome" />
         <input type="text" name="name" v-model="nome" placeholder="Digite seu nome" />
@@ -9,7 +9,7 @@
         <InputLabel text="Escolha o pão" />
         <select class="w-full" name="pao" id="pao" v-model="pao">
           <option value="">Selecione o seu pão</option>
-          <option v-for="pao in paes" :key="pao.id" :value="pao.tipo">{{ pao.tipo }}</option>
+          <option v-for="pao in paes" :key="pao.id" :v-model="pao">{{ pao.tipo }}</option>
         </select>
       </div>
       <div class="flex flex-col gap-1">
@@ -73,6 +73,29 @@ const getIngredientes = async () => {
   paes.value = req.data.paes
   carnes.value = req.data.carnes
   opcionaisData.value = req.data.opcionais
+}
+
+const createBurger = async (e: SubmitEvent) => {
+  e.preventDefault()
+
+  const data = {
+    nome: nome.value,
+    carne: carne.value,
+    pao: pao.value,
+    opcionais: Array.from(opcionais.value),
+    status: 'Solicitado',
+  }
+
+  const req = await api.post('/burgers', data)
+
+  clearInputs()
+}
+
+const clearInputs = () => {
+  nome.value = ''
+  carne.value = ''
+  pao.value = ''
+  opcionais.value = []
 }
 
 onMounted(() => {
