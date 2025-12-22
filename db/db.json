@@ -82,11 +82,7 @@
       "nome": "Matheus Battisti",
       "carne": "Picanha",
       "pao": "Italiano Branco",
-      "opcionais": [
-        "Bacon",
-        "Salame",
-        "Cebola roxa"
-      ],
+      "opcionais": ["Bacon", "Salame", "Cebola roxa"],
       "status": "Finalizado",
       "id": "1"
     },
@@ -94,10 +90,7 @@
       "nome": "João Coelho",
       "carne": "Maminha",
       "pao": "3 Queijos",
-      "opcionais": [
-        "Salame",
-        "Cebola roxa"
-      ],
+      "opcionais": ["Salame", "Cebola roxa"],
       "status": "Solicitado",
       "id": "4"
     },
@@ -106,11 +99,7 @@
       "nome": "Thiago",
       "carne": "Alcatra",
       "pao": "3 Queijos",
-      "opcionais": [
-        "Salame",
-        "Pepino",
-        "Cebola roxa"
-      ],
+      "opcionais": ["Salame", "Pepino", "Cebola roxa"],
       "status": "Solicitado"
     },
     {
@@ -118,11 +107,7 @@
       "nome": "Thiago",
       "carne": "Alcatra",
       "pao": "3 Queijos",
-      "opcionais": [
-        "Salame",
-        "Pepino",
-        "Cebola roxa"
-      ],
+      "opcionais": ["Salame", "Pepino", "Cebola roxa"],
       "status": "Solicitado"
     },
     {
@@ -130,10 +115,7 @@
       "nome": "Tasdas",
       "carne": "Alcatra",
       "pao": "Italiano Branco",
-      "opcionais": [
-        "Bacon",
-        "Cheddar"
-      ],
+      "opcionais": ["Bacon", "Cheddar"],
       "status": "Solicitado"
     },
     {
@@ -141,9 +123,7 @@
       "nome": "asdasd",
       "carne": "Veggie burger",
       "pao": "3 Queijos",
-      "opcionais": [
-        "Cheddar"
-      ],
+      "opcionais": ["Cheddar"],
       "status": "Solicitado"
     },
     {
@@ -151,9 +131,7 @@
       "nome": "",
       "carne": "Alcatra",
       "pao": "3 Queijos",
-      "opcionais": [
-        "Salame"
-      ],
+      "opcionais": ["Salame"],
       "status": "Solicitado"
     },
     {
@@ -161,10 +139,7 @@
       "nome": "Thiago Marzari",
       "carne": "Alcatra",
       "pao": "3 Queijos",
-      "opcionais": [
-        "Bacon",
-        "Cheddar"
-      ],
+      "opcionais": ["Bacon", "Cheddar"],
       "status": "Solicitado"
     },
     {
@@ -172,10 +147,7 @@
       "nome": "asd",
       "carne": "Alcatra",
       "pao": "3 Queijos",
-      "opcionais": [
-        "Cebola roxa",
-        "Tomate"
-      ],
+      "opcionais": ["Cebola roxa", "Tomate"],
       "status": "Solicitado"
     },
     {
@@ -183,10 +155,7 @@
       "nome": "asdasd",
       "carne": "Alcatra",
       "pao": "3 Queijos",
-      "opcionais": [
-        "Cebola roxa",
-        "Tomate"
-      ],
+      "opcionais": ["Cebola roxa", "Tomate"],
       "status": "Solicitado",
       "msg": ""
     },
@@ -195,10 +164,7 @@
       "nome": "Thiago Marzari",
       "carne": "Picanha",
       "pao": "3 Queijos",
-      "opcionais": [
-        "Bacon",
-        "Cheddar"
-      ],
+      "opcionais": ["Bacon", "Cheddar"],
       "status": "Solicitado",
       "msg": ""
     },
@@ -207,11 +173,7 @@
       "nome": "Rosato",
       "carne": "Maminha",
       "pao": "Integral",
-      "opcionais": [
-        "Bacon",
-        "Salame",
-        "Cheddar"
-      ],
+      "opcionais": ["Bacon", "Salame", "Cheddar"],
       "status": "Solicitado",
       "msg": ""
     },
@@ -220,11 +182,16 @@
       "nome": "asd",
       "carne": "Maminha",
       "pao": "3 Queijos",
-      "opcionais": [
-        "Salame",
-        "Tomate",
-        "Cebola roxa"
-      ],
+      "opcionais": ["Salame", "Tomate", "Cebola roxa"],
+      "status": "Solicitado",
+      "msg": ""
+    },
+    {
+      "id": "7ff5",
+      "nome": "Gabriel",
+      "carne": "Alcatra",
+      "pao": "Italiano Branco",
+      "opcionais": ["Bacon", "Pepino", "Cheddar"],
       "status": "Solicitado",
       "msg": ""
     }

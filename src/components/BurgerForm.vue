@@ -95,6 +95,8 @@ const createBurger = async (e: SubmitEvent) => {
     msg: msg.value,
   }
 
+  //TODO: Adicionar verificação para os inputs nao irem vazio para o backend
+
   const res = await api.post('/burgers', data)
 
   msg.value = `Pedido Nº ${res.data.id} realizado com sucesso!`

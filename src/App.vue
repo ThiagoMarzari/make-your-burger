@@ -1,7 +1,9 @@
 <template>
-  <NavBar />
-  <RouterView />
-  <Footer />
+  <div>
+    <NavBar />
+    <RouterView />
+    <Footer />
+  </div>
 </template>
 
 <script setup lang="ts">
