@@ -12,15 +12,16 @@
         </tr>
       </thead>
       <tbody class="w-full border-t">
-        <tr class="border-b border-zinc-300">
-          <th>1</th>
-          <th>Joao</th>
-          <th>Pao de trigo</th>
-          <th>Maminha</th>
+        <tr v-for="burger in burgers" v-bind:key="burger.id" class="border-b border-zinc-300">
+          <th>{{ burger.id }}</th>
+          <th>{{ burger.nome }}</th>
+          <th>{{ burger.pao }}</th>
+          <th>{{ burger.carne }}</th>
           <th>
             <ul>
-              <li>Salame</li>
-              <li>Tomate</li>
+              <li v-for="(opcional, index) in burger.opcionais" v-bind:key="index">
+                {{ opcional }}
+              </li>
             </ul>
           </th>
           <th>
@@ -31,7 +32,7 @@
               <button
                 class="bg-orange-400 text-zinc-900 shadow-amber-500 transition-all hover:shadow"
               >
-                Cancelar pedido
+                Cancelar
               </button>
             </div>
           </th>
@@ -48,7 +49,7 @@ import { onMounted, ref } from 'vue'
 defineOptions({ name: 'DashboardComponent' })
 
 interface BurgerProps {
-  id: number
+  id: string
   nome: string
   status: string
   pao: string
@@ -56,7 +57,7 @@ interface BurgerProps {
   opcionais: string[]
 }
 
-const burgers = ref<BurgerProps>()
+const burgers = ref<BurgerProps[]>([])
 
 const getPedidos = async () => {
   const req = await api.get('/burgers')
