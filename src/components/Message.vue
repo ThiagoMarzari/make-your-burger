@@ -1,6 +1,6 @@
 <template>
-  <div class="border bg-amber-50">
-    <h1 class="text-center text-3xl">{{ message }}</h1>
+  <div class="rounded-lg border border-green-800 bg-green-400 px-2 py-1">
+    <p class="text-center text-xl text-green-950">{{ message }}</p>
   </div>
 </template>
 

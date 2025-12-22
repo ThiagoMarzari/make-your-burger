@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Message message="Teste 1 mensagem sistema" />
+    <Message :message="msg" v-show="msg" />
     <div class="flex w-full items-center justify-center px-4">
       <form class="flex w-full max-w-lg flex-col gap-6" @submit="createBurger">
         <div class="flex flex-col gap-1">
@@ -25,13 +25,15 @@
         </div>
         <div class="flex w-full flex-col justify-center gap-1">
           <InputLabel text="Escolha os opcionais" />
-          <div
-            v-for="op in opcionaisData"
-            :key="op.id"
-            class="grid w-full grid-cols-2 items-center gap-4"
-          >
-            <span class="font-bold">{{ op.tipo }}</span>
-            <input type="checkbox" name="opcionais" v-model="opcionais" :value="op.tipo" />
+          <div class="grid sm:grid-cols-2">
+            <div
+              v-for="op in opcionaisData"
+              :key="op.id"
+              class="grid w-full grid-cols-2 items-center gap-4"
+            >
+              <span class="font-bold">{{ op.tipo }}</span>
+              <input type="checkbox" name="opcionais" v-model="opcionais" :value="op.tipo" />
+            </div>
           </div>
         </div>
         <div>
@@ -50,7 +52,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import InputLabel from './InputLabel.vue'
-import { api } from '@/lib/axios'
+import { api } from '@/lib/api'
 import Message from './Message.vue'
 
 interface IngredienteProps {
@@ -61,6 +63,8 @@ interface IngredienteProps {
 defineOptions({
   name: 'BurgerFormComponent',
 })
+
+const timeToHideMessage = 3000
 
 const paes = ref<IngredienteProps[]>()
 const carnes = ref<IngredienteProps[]>()
@@ -87,12 +91,18 @@ const createBurger = async (e: SubmitEvent) => {
     carne: carne.value,
     pao: pao.value,
     opcionais: Array.from(opcionais.value),
-    status: 'Solicitado',
+    status: status.value,
+    msg: msg.value,
   }
 
-  //const req = await api.post('/burgers', data)
+  const res = await api.post('/burgers', data)
+
+  msg.value = `Pedido Nº ${res.data.id} realizado com sucesso!`
+
+  console.log(res.data)
 
   clearInputs()
+  clearMessage()
 }
 
 const clearInputs = () => {
@@ -100,6 +110,12 @@ const clearInputs = () => {
   carne.value = ''
   pao.value = ''
   opcionais.value = []
+}
+
+const clearMessage = () => {
+  setTimeout(() => {
+    msg.value = ''
+  }, timeToHideMessage)
 }
 
 onMounted(() => {
