@@ -34,14 +34,16 @@ export async function createBurguer(data: CreateBurger): Promise<{ id: string }>
   return res.data.id
 }
 
-export async function deleteBurger(id: string): Promise<void> {
-  await api.delete(`/burgers/${id}`)
+export async function deleteBurger(id: string): Promise<{ id: string }> {
+  const res = await api.delete(`/burgers/${id}`)
+  return res.data
 }
 
-export async function updateBurgerStatus(id: string, option: string): Promise<void> {
-  await api.patch(`/burgers/${id}`, {
+export async function updateBurgerStatus(id: string, option: string): Promise<{ id: string }> {
+  const res = await api.patch(`/burgers/${id}`, {
     status: option,
   })
+  return res.data
 }
 
 // interface Ingredients {
