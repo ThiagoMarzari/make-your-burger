@@ -2,7 +2,7 @@
   <div>
     <Message :message="msg" v-show="msg" />
     <div class="flex w-full items-center justify-center px-4">
-      <form class="flex w-full max-w-lg flex-col gap-6" @submit="createBurger">
+      <form class="flex w-full max-w-lg flex-col gap-6" @submit="handleSubmit">
         <p class="text-center text-4xl">Monte seu burger</p>
         <div class="flex flex-col gap-1">
           <InputLabel text="Nome" />
@@ -59,10 +59,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import InputLabel from './InputLabel.vue'
-import { api } from '@/lib/api'
 import Message from './Message.vue'
 import type { Bread, BurgerOptional, Meat } from '@/interfaces/burguer'
-import { findIngredients } from '@/services/BurgerService'
+import { createBurguer, findIngredients } from '@/services/BurgerService'
 
 defineOptions({
   name: 'BurgerFormComponent',
@@ -91,7 +90,7 @@ const getIngredientes = async () => {
   }
 }
 
-const createBurger = async (e: SubmitEvent) => {
+const handleSubmit = async (e: SubmitEvent) => {
   e.preventDefault()
 
   const data = {
@@ -100,16 +99,11 @@ const createBurger = async (e: SubmitEvent) => {
     pao: pao.value,
     opcionais: Array.from(opcionais.value),
     status: status.value,
-    msg: msg.value,
   }
 
-  //TODO: Adicionar verificação para os inputs nao irem vazio para o backend
+  const burgerID = await createBurguer(data)
 
-  const res = await api.post('/burgers', data)
-
-  msg.value = `Pedido Nº ${res.data.id} realizado com sucesso!`
-
-  console.log(res.data)
+  msg.value = `Pedido Nº ${burgerID} realizado com sucesso!`
 
   clearInputs()
   clearMessage()

@@ -1,4 +1,11 @@
-import type { Bread, BurgerOptional, Meat } from '@/interfaces/burguer'
+import type {
+  Bread,
+  Burger,
+  BurgerOptional,
+  Meat,
+  BurgerStatus,
+  CreateBurger,
+} from '@/interfaces/burguer'
 import { api } from '@/lib/api'
 
 interface Ingredients {
@@ -10,6 +17,31 @@ interface Ingredients {
 export async function findIngredients(): Promise<Ingredients> {
   const res = await api('/ingredientes')
   return res.data
+}
+
+export async function findPedidos(): Promise<Burger[]> {
+  const res = await api('/burgers')
+  return res.data
+}
+
+export async function findBurgerStatus(): Promise<BurgerStatus[]> {
+  const res = await api.get('/status')
+  return res.data
+}
+
+export async function createBurguer(data: CreateBurger): Promise<{ id: string }> {
+  const res = await api.post('/burgers', data)
+  return res.data.id
+}
+
+export async function deleteBurger(id: string): Promise<void> {
+  await api.delete(`/burgers/${id}`)
+}
+
+export async function updateBurgerStatus(id: string, option: string): Promise<void> {
+  await api.patch(`/burgers/${id}`, {
+    status: option,
+  })
 }
 
 // interface Ingredients {

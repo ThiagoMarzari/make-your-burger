@@ -82,18 +82,81 @@
       "nome": "Matheus Battisti",
       "carne": "Picanha",
       "pao": "Italiano Branco",
-      "opcionais": ["Bacon", "Salame", "Cebola roxa"],
+      "opcionais": [
+        "Bacon",
+        "Salame",
+        "Cebola roxa"
+      ],
       "status": "Em produção",
       "id": "1"
     },
     {
-      "id": "6a8d",
-      "nome": "Gabriel",
-      "carne": "Veggie burger",
-      "pao": "3 Queijos",
-      "opcionais": ["Cebola roxa", "Pepino"],
+      "id": "7b82",
+      "nome": "Thiago",
+      "carne": "Picanha",
+      "pao": "Parmesão e Orégano",
+      "opcionais": [
+        "Bacon",
+        "Salame",
+        "Tomate",
+        "Pepino"
+      ],
       "status": "Solicitado",
       "msg": ""
+    },
+    {
+      "id": "aa4c",
+      "nome": "Pinheiro",
+      "carne": "Picanha",
+      "pao": "Parmesão e Orégano",
+      "opcionais": [
+        "Cebola roxa",
+        "Salame",
+        "Tomate"
+      ],
+      "status": "Solicitado",
+      "msg": ""
+    },
+    {
+      "id": "e53e",
+      "nome": "Rossato",
+      "carne": "Picanha",
+      "pao": "Parmesão e Orégano",
+      "opcionais": [
+        "Salame",
+        "Bacon"
+      ],
+      "status": "Solicitado"
+    },
+    {
+      "id": "62de",
+      "nome": "Juca",
+      "carne": "Maminha",
+      "pao": "Italiano Branco",
+      "opcionais": [
+        "Bacon",
+        "Cheddar"
+      ],
+      "status": "Solicitado"
+    },
+    {
+      "id": "bc3e",
+      "nome": "Teste",
+      "carne": "Veggie burger",
+      "pao": "Parmesão e Orégano",
+      "opcionais": [],
+      "status": "Solicitado"
+    },
+    {
+      "id": "d23d",
+      "nome": "Thiago",
+      "carne": "Veggie burger",
+      "pao": "Integral",
+      "opcionais": [
+        "Salame",
+        "Bacon"
+      ],
+      "status": "Solicitado"
     }
   ]
 }

@@ -53,45 +53,44 @@
 </template>
 
 <script setup lang="ts">
-import { api } from '@/lib/api'
 import { onMounted, ref } from 'vue'
 import Message from './Message.vue'
+import type { Burger, BurgerStatus } from '@/interfaces/burguer'
+import {
+  deleteBurger,
+  findBurgerStatus,
+  findPedidos,
+  updateBurgerStatus,
+} from '@/services/BurgerService'
 
 defineOptions({ name: 'DashboardComponent' })
 
-interface BurgerProps {
-  id: string
-  nome: string
-  status: string
-  pao: string
-  carne: string
-  opcionais: string[]
-}
-
-interface StatusProps {
-  id: string
-  tipo: string
-}
 const timeToHideMessage = 3000
 
-const burgers = ref<BurgerProps[]>([])
-const status = ref<StatusProps[]>([])
+const burgers = ref<Burger[]>()
+const status = ref<BurgerStatus[]>([])
 const msg = ref('')
 
 const getPedidos = async () => {
-  const req = await api.get('/burgers')
-
-  burgers.value = req.data
+  try {
+    const data = await findPedidos()
+    burgers.value = data
+  } catch {
+    window.alert('Erro ao obter pedidos')
+  }
 }
 
 const getStatus = async () => {
-  const req = await api.get('/status')
-
-  status.value = req.data
+  try {
+    const data = await findBurgerStatus()
+    status.value = data
+  } catch {
+    window.alert('Erro ao obter BurgerStatus')
+  }
 }
 
 const cancelOrder = async (id: string) => {
-  await api.delete(`/burgers/${id}`)
+  await deleteBurger(id)
 
   msg.value = 'Pedido removido com sucesso'
   clearMessage()
@@ -104,14 +103,14 @@ const updateStatus = async (event: Event, id: string) => {
 
   const option = element.value
   console.log(option)
-  console.log
 
-  await api.patch(`/burgers/${id}`, {
-    status: option,
-  })
-
-  msg.value = 'Pedido atualizado!'
-  clearMessage()
+  try {
+    await updateBurgerStatus(id, option)
+    msg.value = 'Pedido atualizado!'
+    clearMessage()
+  } catch {
+    window.alert('Erro ao obter BurgerStatus')
+  }
 }
 
 const clearMessage = () => {
