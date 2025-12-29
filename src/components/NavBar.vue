@@ -6,8 +6,12 @@
       </RouterLink>
 
       <div class="flex gap-4">
-        <RouterLink class="transition-all hover:scale-105" to="/">Home</RouterLink>
-        <RouterLink class="transition-all hover:scale-105" to="/pedidos">Pedidos</RouterLink>
+        <RouterLink class="text-2xl font-bold transition-all hover:scale-105" to="/"
+          >Home</RouterLink
+        >
+        <RouterLink class="text-2xl font-bold transition-all hover:scale-105" to="/pedidos"
+          >Pedidos</RouterLink
+        >
       </div>
     </nav>
   </header>

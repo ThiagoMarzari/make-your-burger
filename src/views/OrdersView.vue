@@ -1,6 +1,6 @@
 <template>
-  <main class="min-h-dvh w-full px-4">
-    <div class="container mx-auto w-full">
+  <main class="min-h-dvh px-4">
+    <div class="flex w-full flex-col">
       <h1 class="text-4xl">Gerenciar pedidos:</h1>
       <Dashboard />
     </div>

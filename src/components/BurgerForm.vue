@@ -3,6 +3,7 @@
     <Message :message="msg" v-show="msg" />
     <div class="flex w-full items-center justify-center px-4">
       <form class="flex w-full max-w-lg flex-col gap-6" @submit="createBurger">
+        <p class="text-center text-4xl">Monte seu burger</p>
         <div class="flex flex-col gap-1">
           <InputLabel text="Nome" />
           <input type="text" name="name" v-model="nome" placeholder="Digite seu nome" />
@@ -31,8 +32,14 @@
               :key="op.id"
               class="grid w-full grid-cols-2 items-center gap-4"
             >
-              <span class="font-bold">{{ op.tipo }}</span>
-              <input type="checkbox" name="opcionais" v-model="opcionais" :value="op.tipo" />
+              <label :for="`opcional-${op.id}`" class="font-bold">{{ op.tipo }}</label>
+              <input
+                type="checkbox"
+                name="opcionais"
+                v-model="opcionais"
+                :value="op.tipo"
+                :id="`opcional-${op.id}`"
+              />
             </div>
           </div>
         </div>
@@ -54,33 +61,34 @@ import { onMounted, ref } from 'vue'
 import InputLabel from './InputLabel.vue'
 import { api } from '@/lib/api'
 import Message from './Message.vue'
-
-interface IngredienteProps {
-  id: number
-  tipo: string
-}
+import type { Bread, BurgerOptional, Meat } from '@/interfaces/burguer'
+import { findIngredients } from '@/services/BurgerService'
 
 defineOptions({
   name: 'BurgerFormComponent',
 })
 
-const timeToHideMessage = 3000
+const TIME_TO_HIDE_MESSAGE = 3000
 
-const paes = ref<IngredienteProps[]>()
-const carnes = ref<IngredienteProps[]>()
-const opcionaisData = ref<IngredienteProps[]>()
+const paes = ref<Bread[]>()
+const carnes = ref<Meat[]>()
+const opcionaisData = ref<BurgerOptional[]>()
 const nome = ref('')
-const pao = ref()
-const carne = ref()
+const pao = ref('')
+const carne = ref('')
 const opcionais = ref([])
 const status = ref('Solicitado')
 const msg = ref('')
 
 const getIngredientes = async () => {
-  const req = await api.get('/ingredientes')
-  paes.value = req.data.paes
-  carnes.value = req.data.carnes
-  opcionaisData.value = req.data.opcionais
+  try {
+    const data = await findIngredients()
+    paes.value = data.paes
+    carnes.value = data.carnes
+    opcionaisData.value = data.opcionais
+  } catch {
+    window.alert('Erro!!! ')
+  }
 }
 
 const createBurger = async (e: SubmitEvent) => {
@@ -117,7 +125,7 @@ const clearInputs = () => {
 const clearMessage = () => {
   setTimeout(() => {
     msg.value = ''
-  }, timeToHideMessage)
+  }, TIME_TO_HIDE_MESSAGE)
 }
 
 onMounted(() => {
